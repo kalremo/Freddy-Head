@@ -8,9 +8,9 @@ const int lhome = 90; // Home position for servo (midpoint)
 
 void setup() {
   Serial.begin(9600);
-  pinMode(2, INPUT_PULLUP); // Button for left/right servo
-  pinMode(3, INPUT_PULLUP); // Button for up/down servo
-  pinMode(4, INPUT_PULLUP); // Button for additional control (if needed)
+  pinMode(2, INPUT_PULLUP); // Button for up/down servo
+  pinMode(3, INPUT_PULLUP); // Button for left/right servo
+  pinMode(4, INPUT_PULLUP); // Button for left/right servo
   
   lrservo.attach(8);
   udservo.attach(9);
@@ -25,18 +25,22 @@ void loop() {
   int udAngle = lhome; // Default to home position
 
   // Left/Right control
-  if (!digitalRead(2)) { // Button 2 pressed
-    lrAngle = 180; // Move to right position
+  if (!digitalRead(3)) { // Button 2 pressed
+    lrAngle = 130; // Move to right position
+    Serial.println("looking left");
   }
 
   // Up/Down control
-  if (!digitalRead(4)) { // Button 3 pressed
-    udAngle = 0; // Move to up position
+  if (!digitalRead(2)) { // Button 3 pressed
+    udAngle = 40; // Move to up position
+    Serial.println("lids down");
+
   }
 
   // Additional control (if needed)
-  if (!digitalRead(3)) { // Button 4 pressed
-    lrAngle = 0; // Move to left position
+  if (!digitalRead(4)) { // Button 4 pressed
+    lrAngle = 50; // Move to left position
+    Serial.println("looking right");
   }
 
   // Write angles to servos
