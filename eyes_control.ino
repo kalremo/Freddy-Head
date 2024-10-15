@@ -23,18 +23,18 @@ void loop() {
   // Check button states and set angles accordingly
   int lrAngle = ehome; // Default to home position
   int udAngle = lhome; // Default to home position
-
-  // Left/Right control
-  if (!digitalRead(3)) { // Button 2 pressed
-    lrAngle = 130; // Move to right position
-    Serial.println("looking left");
-  }
-
+  
   // Up/Down control
-  if (!digitalRead(2)) { // Button 3 pressed
+  if (!digitalRead(2)) { // Button 2 pressed
     udAngle = 40; // Move to up position
     Serial.println("lids down");
 
+  }
+  
+  // Left/Right control
+  if (!digitalRead(3)) { // Button 3 pressed
+    lrAngle = 130; // Move to right position
+    Serial.println("looking left");
   }
 
   // Additional control (if needed)
